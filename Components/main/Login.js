@@ -4,6 +4,7 @@ import { Text, Button } from 'galio-framework'
 import { Item, Input } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons';
 import Loader from '../config/Loader'
+
 export function Login(props) {
   const [username, setusername] = useState({ value: 'test@gmail.com', error: '' });
   const [password, setPassword] = useState({ value: 'test', error: '' });
@@ -24,14 +25,12 @@ export function Login(props) {
     return true;
   };
 
-
   const _changeIcon = () => {
     if (icon === 'eye-slash') {
       seticon('eye')
     }
     setinputtext(!inputtext)
   }
-
 
   const _onLoginPressed = ({ }) => {
     if (username.value.length > 0 && password.value.length > 0) {
@@ -57,14 +56,14 @@ export function Login(props) {
             token('@lastname', res.Last_name)
             token('@email', res.username)
             props.navigation.navigate('main');
-          }else if (res.message === 1){
+          } else if (res.message === 1) {
             setusername({ value: '' })
             setPassword({ value: '' })
-            seterror("Email est Invalid")
-          }else  if (res.message === 0){
+            seterror("L'email est invalid !")
+          } else if (res.message === 0) {
             setusername({ value: '' })
             setPassword({ value: '' })
-            seterror("Le nom d'utilisateur ou le mot de passe est incorrect")
+            seterror("L'email ou le mot de passe est incorrect")
           }
         }
         ).catch(error => console.log(error))

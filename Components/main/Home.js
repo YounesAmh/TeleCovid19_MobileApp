@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, StyleSheet, Image } from 'react-native'
-
 import { Text, Button } from 'galio-framework';
 
 export function Home(props) {
