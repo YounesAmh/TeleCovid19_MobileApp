@@ -2,8 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View, TextInput, TouchableOpacity, Picker } from 'react-native';
 import { Text } from 'galio-framework'
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Fontisto } from '@expo/vector-icons';
-import { Dropdown } from 'react-native-material-dropdown';
+import { FontAwesome } from '@expo/vector-icons';
 import {
     SEXECHOICES,
     STATUTCHOICES,
@@ -29,13 +28,12 @@ export default ({ handleChange, values, setFieldValue }) => {
 
     return (
         <View style={styles.container}>
+
             <View style={{ marginTop: 30 }} />
+
             <View style={styles.zone}>
                 <Text style={styles.zoneText}>Date de naissance :</Text>
-                <View style={{ alignItems: "center" }}>
-                    <TouchableOpacity onPress={() => { setShow(true) }}>
-                        <Fontisto name="date" size={24} color="black" />
-                    </TouchableOpacity >
+                <View style={{ alignItems: "center", flexDirection: "row", justifyContent: "center" }}>
                     {show ? <DateTimePicker
                         testID="dateTimePicker"
                         value={date}
@@ -44,10 +42,12 @@ export default ({ handleChange, values, setFieldValue }) => {
                     /> : null}
                     <TouchableOpacity onPress={() => { setShow(true) }}>
                         <View pointerEvents="none" >
-                            <TextInput style={styles.textInput} value={values.currentDatee} placeholder="Selection la date" />
+                            <TextInput style={styles.textInput} value={values.currentDatee} placeholder="Sélectionnez une date" />
                         </View>
                     </TouchableOpacity>
-
+                    <TouchableOpacity onPress={() => { setShow(true) }}>
+                        <FontAwesome name="calendar" size={24} color="white" style={{ marginLeft: 15, marginTop: -10 }} />
+                    </TouchableOpacity >
                 </View>
             </View>
 
@@ -55,12 +55,8 @@ export default ({ handleChange, values, setFieldValue }) => {
                 <Text style={styles.zoneText}>Sexe :</Text>
                 <Picker
                     selectedValue={values.sexe}
-                    style={{
-                        width: 200,
-                        alignSelf: "center",
-                        marginTop: -15,
-                        marginBottom: 15,
-                    }}
+                    style={styles.picker}
+                    itemStyle={{ color: "white" }}
                     onValueChange={handleChange("sexe")}
                 >
                     {SEXECHOICES.map(function (item) {
@@ -76,12 +72,7 @@ export default ({ handleChange, values, setFieldValue }) => {
                 <Text style={styles.zoneText}>Statut matrimonial :</Text>
                 <Picker
                     selectedValue={values.statutMatrimonial}
-                    style={{
-                        width: 200,
-                        alignSelf: "center",
-                        marginTop: -15,
-                        marginBottom: 15,
-                    }}
+                    style={styles.picker}
                     onValueChange={handleChange("statutMatrimonial")}
                 >
                     {STATUTCHOICES.map(function (item) {
@@ -121,12 +112,7 @@ export default ({ handleChange, values, setFieldValue }) => {
 
                 <Picker
                     selectedValue={values.niveauetude}
-                    style={{
-                        width: 200,
-                        alignSelf: "center",
-                        marginTop: -15,
-                        marginBottom: 15,
-                    }}
+                    style={styles.picker}
                     onValueChange={handleChange("niveauetude")}
                 >
                     {NIVEAUETUDECHOICES.map(function (item) {
@@ -144,12 +130,7 @@ export default ({ handleChange, values, setFieldValue }) => {
 
                 <Picker
                     selectedValue={values.Activite}
-                    style={{
-                        width: 200,
-                        alignSelf: "center",
-                        marginTop: -15,
-                        marginBottom: 15,
-                    }}
+                    style={styles.picker}
                     onValueChange={handleChange("Activite")}
                 >
                     {ACTIVITECHOICES.map(function (item) {
@@ -159,45 +140,36 @@ export default ({ handleChange, values, setFieldValue }) => {
                         )
                     })
                     }
-                                    </Picker>
+                </Picker>
 
-                    {values.Activite === 'Actif' ?
-                        <TextInput placeholder="poste de travail occupé"
-                            style={styles.textInput}
-                            value={values.ActiviteSiActive}
-                            onChangeText={handleChange("ActiviteSiActive")}
-                            placeholderTextColor={'#d3d0d2'}
+                {values.Activite === 'Actif' ?
+                    <TextInput placeholder="poste de travail occupé"
+                        style={styles.textInput}
+                        value={values.ActiviteSiActive}
+                        onChangeText={handleChange("ActiviteSiActive")}
+                        placeholderTextColor={'#d3d0d2'}
 
-                        />
-                        : null
-                    }
-                
-                    {values.Activite == 'Autre, préciser' ?
-                        <TextInput placeholder="Précisez..."
-                            style={styles.textInput}
-                            value={values.AutreActivite}
-                            onChangeText={handleChange("AutreActivite")}
-                            placeholderTextColor={'#d3d0d2'}
+                    />
+                    : null
+                }
 
-                        />
-                        : null
-                    }
+                {values.Activite == 'Autre, préciser' ?
+                    <TextInput placeholder="Précisez..."
+                        style={styles.textInput}
+                        value={values.AutreActivite}
+                        onChangeText={handleChange("AutreActivite")}
+                        placeholderTextColor={'#d3d0d2'}
+
+                    />
+                    : null
+                }
             </View>
-
-
-
-
 
             <View style={styles.zone}>
                 <Text style={styles.zoneText}>Revenu mensuel du ménage :</Text>
                 <Picker
                     selectedValue={values.revenu}
-                    style={{
-                        width: 200,
-                        alignSelf: "center",
-                        marginTop: -15,
-                        marginBottom: 15,
-                    }}
+                    style={styles.picker}
                     onValueChange={handleChange("revenu")}
                 >
                     {REVENUCHOICES.map(function (item) {
@@ -235,12 +207,7 @@ export default ({ handleChange, values, setFieldValue }) => {
                 <Text style={styles.zoneText}>Milieu de résidence :</Text>
                 <Picker
                     selectedValue={values.MilieuDeResidence}
-                    style={{
-                        width: 200,
-                        alignSelf: "center",
-                        marginTop: -15,
-                        marginBottom: 15,
-                    }}
+                    style={styles.picker}
                     onValueChange={handleChange("MilieuDeResidence")}
                 >
                     {MILIEUCHOICES.map(function (item) {
@@ -281,6 +248,12 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
     },
+    picker: {
+        width: 200,
+        alignSelf: "center",
+        marginTop: -5,
+        marginBottom: 15,
+    },
     dropdowncontainer: {
         width: 200,
         alignSelf: "center",
@@ -313,7 +286,7 @@ const styles = StyleSheet.create({
     },
     textInput: {
         width: 200,
-        height: 40,
+        height: 35,
         fontSize: 16,
         color: '#ecf0f1',
         alignSelf: "center",

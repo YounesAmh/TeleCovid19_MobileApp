@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { StyleSheet, View, TextInput, TouchableOpacity, Picker } from 'react-native';
 import { Text } from 'galio-framework'
- import { Fontisto } from '@expo/vector-icons';
- import DateTimePicker from '@react-native-community/datetimepicker';
+import { Fontisto } from '@expo/vector-icons';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import {
     CONTACTPERSONNECHOICES,
 } from '../../config/Choices'
@@ -23,16 +23,7 @@ export default ({ handleChange, values, handleBlur, setFieldValue }) => {
 
     return (
         <View style={styles.container}>
-
-
-<Text style={{ color: '#FFF' }}>{JSON.stringify(values, null, 2)}</Text>
-
-     
-
-
-
-
-           
+            <Text style={{ color: '#FFF' }}>{JSON.stringify(values, null, 2)}</Text>
         </View>
 
     );
