@@ -46,7 +46,7 @@ export default ({ handleChange, values, setFieldValue }) => {
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => { setShow(true) }}>
-                        <FontAwesome name="calendar" size={24} color="white" style={{ marginLeft: 15, marginTop: -10 }} />
+                        <FontAwesome name="calendar" size={24} color="white" style={{ marginLeft: 15, marginTop: -15 }} />
                     </TouchableOpacity >
                 </View>
             </View>
@@ -253,6 +253,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         marginTop: -5,
         marginBottom: 15,
+        color: "#fff",
     },
     dropdowncontainer: {
         width: 200,
