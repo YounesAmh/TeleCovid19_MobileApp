@@ -45,8 +45,6 @@ export default ({ handleChange, values, handleBlur, setFieldValue }) => {
             }
             )
             .catch(error => console.log(error))
-
-
     }, []);
 
 
@@ -57,26 +55,23 @@ export default ({ handleChange, values, handleBlur, setFieldValue }) => {
             <View style={styles.zone}>
                 {values.comordibite.map(({ text }, index) => (
                     <View key={index}>
-                        <Text style={styles.zoneText}>Statut matrimonial : #{index + 1}</Text>
-                        <Picker
-                            selectedValue={values.comordibite[index].Comorbidite}
-                            style={{
-                                width: 200,
-                                alignSelf: "center",
-                                marginTop: -15,
-                                marginBottom: 15,
-                            }}
-                            onValueChange={handleChange(`comordibite[${index}].Comorbidite`)}
-                        >
-                            {Comorbidite.map(function (item) {
-                                let key = 0;
-                                return (
-                                    <Picker.Item label={item.value} value={item.value} key={index} color='#000' />
-                                )
-                            })
-                            }
-                        </Picker>
-                        <Text style={styles.zoneText}>Age au diagnostic: #{index + 1}</Text>
+                        <Text style={styles.zoneText}>Antécédent personnel #{index + 1}</Text>
+                        <View style={styles.pickerView}>
+                            <Picker
+                                selectedValue={values.comordibite[index].Comorbidite}
+                                style={styles.picker}
+                                onValueChange={handleChange(`comordibite[${index}].Comorbidite`)}
+                            >
+                                {Comorbidite.map(function (item) {
+                                    let key = 0;
+                                    return (
+                                        <Picker.Item label={item.value} value={item.value} key={index} color='#000' />
+                                    )
+                                })
+                                }
+                            </Picker>
+                        </View>
+                        <Text style={styles.zoneText}>Age au diagnostic #{index + 1}</Text>
                         <TextInput
                             key={index}
                             value={values.comordibite[index].AgeAuDiagnostic}
@@ -88,7 +83,7 @@ export default ({ handleChange, values, handleBlur, setFieldValue }) => {
                             onBlur={handleBlur(`comordibite[${index}].AgeAuDiagnostic`)}
 
                         />
-                        <Text style={styles.zoneText}>Prise de traitement Pharmaceutique: #{index + 1}</Text>
+                        <Text style={styles.zoneText}>Prise de traitement Pharmaceutique #{index + 1}</Text>
                         <RadioForm
                             radio_props={[
                                 { label: 'non', value: 'non', key: 0 },
@@ -96,7 +91,7 @@ export default ({ handleChange, values, handleBlur, setFieldValue }) => {
                             ]}
                             // initial={begin ? 1 : `comordibite[${index}].PriseDeTraitement.key`}
                             labelHorizontal={false}
-                            buttonColor={'#2196f3'}
+                            buttonColor={'#d3d0d2'}
                             onPress={(value) => {
                                 setFieldValue(`comordibite[${index}].PriseDeTraitement`, value)
                             }
@@ -105,7 +100,7 @@ export default ({ handleChange, values, handleBlur, setFieldValue }) => {
                     </View>
 
                 ))}
-                <Button onPress={() => setFieldValue('comordibite', [...values.comordibite, ''])} title="ajouter un Comorbidité" />
+                <Button onPress={() => setFieldValue('comordibite', [...values.comordibite, ''])} title="Ajouter une comorbidité" />
 
                 <Text style={styles.zoneText}>Autres maladies graves (A préciser) </Text>
                 <TextInput
@@ -119,19 +114,16 @@ export default ({ handleChange, values, handleBlur, setFieldValue }) => {
             </View>
             <View style={styles.zone}>
                 <Text style={styles.zoneText}>Vaccination BCG: </Text>
-                <Picker
-                    selectedValue={values.VaccinationBCG}
-                    style={{
-                        width: 200,
-                        alignSelf: "center",
-                        marginTop: -15,
-                        marginBottom: 15,
-                    }}
-                    onValueChange={handleChange("VaccinationBCG")}
-                >
-                    <Picker.Item label="non" value="non" key="0" color='#000' />
-                    <Picker.Item label="oui" value="oui" key="1" color='#000' />
-                </Picker>
+                <View style={styles.pickerView}>
+                    <Picker
+                        selectedValue={values.VaccinationBCG}
+                        style={styles.picker}
+                        onValueChange={handleChange("VaccinationBCG")}
+                    >
+                        <Picker.Item label="non" value="non" key="0" color='#000' />
+                        <Picker.Item label="oui" value="oui" key="1" color='#000' />
+                    </Picker>
+                </View>
             </View>
 
 
@@ -139,27 +131,21 @@ export default ({ handleChange, values, handleBlur, setFieldValue }) => {
                 {values.Medicaments.map(({ text }, index) => (
                     <View key={index}>
                         <Text style={styles.zoneText}>Utilisation des médicaments:  #{index + 1}</Text>
-
-                        <Picker
-                            selectedValue={values.Medicaments[index].medicament}
-
-                            style={{
-                                width: 200,
-                                alignSelf: "center",
-                                marginTop: -15,
-                                marginBottom: 15,
-                            }}
-                            onValueChange={handleChange(`Medicaments[${index}].medicament`)}
-
-                        >
-                            {Medicaments.map(function (item) {
-                                let key = 0;
-                                return (
-                                    <Picker.Item label={item.value} value={item.value} key={index} color='#000' />
-                                )
-                            })
-                            }
-                        </Picker>
+                        <View style={styles.pickerView}>
+                            <Picker
+                                selectedValue={values.Medicaments[index].medicament}
+                                style={styles.picker}
+                                onValueChange={handleChange(`Medicaments[${index}].medicament`)}
+                            >
+                                {Medicaments.map(function (item) {
+                                    let key = 0;
+                                    return (
+                                        <Picker.Item label={item.value} value={item.value} key={index} color='#000' />
+                                    )
+                                })
+                                }
+                            </Picker>
+                        </View>
                         <Text style={styles.zoneText}>Age au diagnostic: #{index + 1}</Text>
                         <TextInput
                             key={index}
@@ -187,29 +173,23 @@ export default ({ handleChange, values, handleBlur, setFieldValue }) => {
                 />
             </View>
 
-
-
-
             {values.sexe === 'Femme' ?
                 <View style={styles.zone}>
                     <Text style={styles.zoneText}>Grossesse encours: </Text>
-                    <Picker
-                        selectedValue={values.Grossesse}
-                        style={{
-                            width: 200,
-                            alignSelf: "center",
-                            marginTop: -15,
-                            marginBottom: 15,
-                        }}
-                        onValueChange={handleChange("Grossesse")}
-                    >
-                        <Picker.Item label="non" value="non" key="0" color='#000' />
-                        <Picker.Item label="oui" value="oui" key="1" color='#000' />
-                    </Picker>
+                    <View style={styles.pickerView}>
+                        <Picker
+                            selectedValue={values.Grossesse}
+                            style={styles.picker}
+                            onValueChange={handleChange("Grossesse")}
+                        >
+                            <Picker.Item label="non" value="non" key="0" color='#000' />
+                            <Picker.Item label="oui" value="oui" key="1" color='#000' />
+                        </Picker>
+                    </View>
 
                     {values.Grossesse === 'oui' ?
                         <>
-                            <Text style={styles.zoneText}> préciser le nombre de semaine d'aménorrhée </Text>
+                            <Text style={styles.zoneText}>Préciser le nombre de semaine d'aménorrhée :</Text>
                             <TextInput
                                 value={values.NbSemaineamenorrhee}
                                 style={styles.textInput}
@@ -221,52 +201,45 @@ export default ({ handleChange, values, handleBlur, setFieldValue }) => {
                         : null
                     }
                 </View>
-
                 : null}
 
+            <View style={styles.zone}>
+                <Text style={styles.zoneText}>Tabagisme actif : </Text>
+                <View style={styles.pickerView}>
+                    <Picker
+                        selectedValue={values.TabagismeActif}
+                        style={styles.picker}
+                        onValueChange={handleChange("TabagismeActif")}
+                    >
+                        {TABAGISMECHOICES.map(function (item) {
+                            let key = 0;
+                            return (
+                                <Picker.Item label={item.value} value={item.value} key={item.key} color='#000' />
+                            )
+                        })
+                        }
+                    </Picker>
+                </View>
+
+                {(values.TabagismeActif === "Fumeur" || values.TabagismeActif === "Ex-fumeur") ?
+                    <>
+                        <Text style={styles.zoneText}> Durée de consommation (année) :  </Text>
+                        <TextInput
+                            value={values.DureeDeConsommation}
+                            style={styles.textInput}
+                            placeholder="Écrivez ici..."
+                            onChangeText={handleChange(`DureeDeConsommation`)}
+                            placeholderTextColor={'#d3d0d2'}
+                        />
+                    </>
+                    : null}
+
+
+            </View>
 
 
 
-<View style={styles.zone}>
-<Text style={styles.zoneText}>Tabagisme actif : </Text>
-<Picker
-                    selectedValue={values.TabagismeActif}
-                    style={{
-                        width: 200,
-                        alignSelf: "center",
-                        marginTop: -15,
-                        marginBottom: 15,
-                    }}
-                    onValueChange={handleChange("TabagismeActif")}
-                >
-                    {TABAGISMECHOICES.map(function (item) {
-                        let key = 0;
-                        return (
-                            <Picker.Item label={item.value} value={item.value} key={item.key} color='#000' />
-                        )
-                    })
-                    }
-                </Picker>
-
-                    {(values.TabagismeActif === "Fumeur" || values.TabagismeActif === "Ex-fumeur") ? 
-                      <>
-                      <Text style={styles.zoneText}> Durée de consommation (année) :  </Text>
-                      <TextInput
-                          value={values.DureeDeConsommation}
-                          style={styles.textInput}
-                          placeholder="Écrivez ici..."
-                          onChangeText={handleChange(`DureeDeConsommation`)}
-                          placeholderTextColor={'#d3d0d2'}
-                      />
-                  </>
-                : null}
-
-
-</View>
-
-
-
-<Text style={{ color: '#FFF' }}>{JSON.stringify(values, null, 2)}</Text>
+            <Text style={{ color: '#FFF' }}>{JSON.stringify(values, null, 2)}</Text>
         </View>
 
     );
@@ -278,14 +251,22 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
     },
-    dropdowncontainer: {
-        width: 200,
+    picker: {
+        width: 250,
         alignSelf: "center",
-        marginTop: -15,
-        marginBottom: 15,
+        marginTop: -5,
+        color: "#ecf0f1",
+        backgroundColor: 'transparent'
     },
-    dropdown: {
-        color: '#ecf0f1',
+    pickerView: {
+        width: 250,
+        borderWidth: 1,
+        borderColor: '#d3d0d2',
+        borderRadius: 5,
+        overflow: 'hidden',
+        alignSelf: 'center',
+        marginTop: 8,
+        marginBottom: 18,
     },
     zone: {
         borderWidth: 1,
@@ -303,19 +284,14 @@ const styles = StyleSheet.create({
         marginLeft: 25,
         color: '#ecf0f1',
     },
-    datepicker: {
-        width: 250,
-        marginTop: 15,
-        marginBottom: 15,
-    },
     textInput: {
-        width: 200,
-        height: 40,
+        width: 250,
+        height: 35,
         fontSize: 16,
         color: '#ecf0f1',
         alignSelf: "center",
         marginTop: 5,
-        marginBottom: 30,
+        marginBottom: 20,
         borderBottomWidth: 0.5,
         borderBottomColor: '#d3d0d2',
     },

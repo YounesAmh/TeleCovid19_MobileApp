@@ -42,7 +42,7 @@ export default ({ handleChange, values, setFieldValue }) => {
                     /> : null}
                     <TouchableOpacity onPress={() => { setShow(true) }}>
                         <View pointerEvents="none" >
-                            <TextInput style={styles.textInput} value={values.currentDatee} placeholder="Sélectionnez une date" />
+                            <TextInput style={styles.DateInput} value={values.currentDatee} placeholder="Sélectionnez une date" />
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => { setShow(true) }}>
@@ -53,36 +53,39 @@ export default ({ handleChange, values, setFieldValue }) => {
 
             <View style={styles.zone}>
                 <Text style={styles.zoneText}>Sexe :</Text>
-                <Picker
-                    selectedValue={values.sexe}
-                    style={styles.picker}
-                    itemStyle={{ color: "white" }}
-                    onValueChange={handleChange("sexe")}
-                >
-                    {SEXECHOICES.map(function (item) {
-                        let key = 0;
-                        return (
-                            <Picker.Item label={item.value} value={item.value} key={item.key} color='#000' />
-                        )
-                    })
-                    }
-                </Picker>
+                <View style={styles.pickerView}>
+                    <Picker
+                        selectedValue={values.sexe}
+                        style={styles.picker}
+                        onValueChange={handleChange("sexe")}
+                    >
+                        {SEXECHOICES.map(function (item) {
+                            let key = 0;
+                            return (
+                                <Picker.Item label={item.value} value={item.value} key={item.key} color='#000' />
+                            )
+                        })
+                        }
+                    </Picker>
+                </View>
             </View>
             <View style={styles.zone}>
                 <Text style={styles.zoneText}>Statut matrimonial :</Text>
-                <Picker
-                    selectedValue={values.statutMatrimonial}
-                    style={styles.picker}
-                    onValueChange={handleChange("statutMatrimonial")}
-                >
-                    {STATUTCHOICES.map(function (item) {
-                        let key = 0;
-                        return (
-                            <Picker.Item label={item.value} value={item.value} key={item.key} color='#000' />
-                        )
-                    })
-                    }
-                </Picker>
+                <View style={styles.pickerView}>
+                    <Picker
+                        selectedValue={values.statutMatrimonial}
+                        style={styles.picker}
+                        onValueChange={handleChange("statutMatrimonial")}
+                    >
+                        {STATUTCHOICES.map(function (item) {
+                            let key = 0;
+                            return (
+                                <Picker.Item label={item.value} value={item.value} key={item.key} color='#000' />
+                            )
+                        })
+                        }
+                    </Picker>
+                </View>
                 {values.statutMatrimonial == 'Non précisée' ?
                     <TextInput placeholder="Précisez..."
                         style={styles.textInput}
@@ -93,7 +96,6 @@ export default ({ handleChange, values, setFieldValue }) => {
                     : null
                 }
             </View>
-
 
             <View style={styles.zone}>
                 <Text style={styles.zoneText}>Nombre d’enfants :</Text>
@@ -109,38 +111,40 @@ export default ({ handleChange, values, setFieldValue }) => {
 
             <View style={styles.zone}>
                 <Text style={styles.zoneText}>Niveau d’étude :</Text>
-
-                <Picker
-                    selectedValue={values.niveauetude}
-                    style={styles.picker}
-                    onValueChange={handleChange("niveauetude")}
-                >
-                    {NIVEAUETUDECHOICES.map(function (item) {
-                        let key = 0;
-                        return (
-                            <Picker.Item label={item.value} value={item.value} key={item.key} color='#000' />
-                        )
-                    })
-                    }
-                </Picker>
+                <View style={styles.pickerView}>
+                    <Picker
+                        selectedValue={values.niveauetude}
+                        style={styles.picker}
+                        onValueChange={handleChange("niveauetude")}
+                    >
+                        {NIVEAUETUDECHOICES.map(function (item) {
+                            let key = 0;
+                            return (
+                                <Picker.Item label={item.value} value={item.value} key={item.key} color='#000' />
+                            )
+                        })
+                        }
+                    </Picker>
+                </View>
             </View>
 
             <View style={styles.zone}>
                 <Text style={styles.zoneText}>Activité : </Text>
-
-                <Picker
-                    selectedValue={values.Activite}
-                    style={styles.picker}
-                    onValueChange={handleChange("Activite")}
-                >
-                    {ACTIVITECHOICES.map(function (item) {
-                        let key = 0;
-                        return (
-                            <Picker.Item label={item.value} value={item.value} key={item.key} color='#000' />
-                        )
-                    })
-                    }
-                </Picker>
+                <View style={styles.pickerView}>
+                    <Picker
+                        selectedValue={values.Activite}
+                        style={styles.picker}
+                        onValueChange={handleChange("Activite")}
+                    >
+                        {ACTIVITECHOICES.map(function (item) {
+                            let key = 0;
+                            return (
+                                <Picker.Item label={item.value} value={item.value} key={item.key} color='#000' />
+                            )
+                        })
+                        }
+                    </Picker>
+                </View>
 
                 {values.Activite === 'Actif' ?
                     <TextInput placeholder="poste de travail occupé"
@@ -167,19 +171,21 @@ export default ({ handleChange, values, setFieldValue }) => {
 
             <View style={styles.zone}>
                 <Text style={styles.zoneText}>Revenu mensuel du ménage :</Text>
-                <Picker
-                    selectedValue={values.revenu}
-                    style={styles.picker}
-                    onValueChange={handleChange("revenu")}
-                >
-                    {REVENUCHOICES.map(function (item) {
-                        let key = 0;
-                        return (
-                            <Picker.Item label={item.value} value={item.value} key={item.key} color='#000' />
-                        )
-                    })
-                    }
-                </Picker>
+                <View style={styles.pickerView}>
+                    <Picker
+                        selectedValue={values.revenu}
+                        style={styles.picker}
+                        onValueChange={handleChange("revenu")}
+                    >
+                        {REVENUCHOICES.map(function (item) {
+                            let key = 0;
+                            return (
+                                <Picker.Item label={item.value} value={item.value} key={item.key} color='#000' />
+                            )
+                        })
+                        }
+                    </Picker>
+                </View>
             </View>
 
 
@@ -205,19 +211,21 @@ export default ({ handleChange, values, setFieldValue }) => {
 
             <View style={styles.zone}>
                 <Text style={styles.zoneText}>Milieu de résidence :</Text>
-                <Picker
-                    selectedValue={values.MilieuDeResidence}
-                    style={styles.picker}
-                    onValueChange={handleChange("MilieuDeResidence")}
-                >
-                    {MILIEUCHOICES.map(function (item) {
-                        let key = 0;
-                        return (
-                            <Picker.Item label={item.value} value={item.value} key={item.key} color='#000' />
-                        )
-                    })
-                    }
-                </Picker>
+                <View style={styles.pickerView}>
+                    <Picker
+                        selectedValue={values.MilieuDeResidence}
+                        style={styles.picker}
+                        onValueChange={handleChange("MilieuDeResidence")}
+                    >
+                        {MILIEUCHOICES.map(function (item) {
+                            let key = 0;
+                            return (
+                                <Picker.Item label={item.value} value={item.value} key={item.key} color='#000' />
+                            )
+                        })
+                        }
+                    </Picker>
+                </View>
             </View>
             <View style={styles.zone}>
                 <Text style={styles.zoneText}>Mesures Physiques :</Text>
@@ -248,21 +256,27 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
     },
+    datepicker: {
+        width: 200,
+        marginTop: 15,
+        marginBottom: 15,
+    },
     picker: {
         width: 200,
         alignSelf: "center",
         marginTop: -5,
-        marginBottom: 15,
-        color: "#fff",
+        color: "#ecf0f1",
+        backgroundColor: 'transparent'
     },
-    dropdowncontainer: {
+    pickerView: {
         width: 200,
-        alignSelf: "center",
-        marginTop: -15,
-        marginBottom: 15,
-    },
-    dropdown: {
-        color: '#ecf0f1',
+        borderWidth: 1,
+        borderColor: '#d3d0d2',
+        borderRadius: 5,
+        overflow: 'hidden',
+        alignSelf: 'center',
+        marginTop: 8,
+        marginBottom: 18,
     },
     zone: {
         borderWidth: 1,
@@ -280,13 +294,19 @@ const styles = StyleSheet.create({
         marginLeft: 25,
         color: '#ecf0f1',
     },
-    datepicker: {
-        width: 250,
-        marginTop: 15,
-        marginBottom: 15,
-    },
     textInput: {
         width: 200,
+        height: 35,
+        fontSize: 16,
+        color: '#ecf0f1',
+        alignSelf: "center",
+        marginTop: 5,
+        marginBottom: 20,
+        borderBottomWidth: 0.5,
+        borderBottomColor: '#d3d0d2',
+    },
+    DateInput: {
+        width: 160,
         height: 35,
         fontSize: 16,
         color: '#ecf0f1',
